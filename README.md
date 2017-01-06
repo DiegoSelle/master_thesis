@@ -2,7 +2,7 @@
 
 This is a repository with sample code of the Master's Thesis of Diego Selle.
 It was written in Python 3.5. The code will be thoroughly discussed and the context of
-the master's thesis will be discussed.
+the master's thesis will also be presented.
 
 -Developer: diego.selle@laas.fr, diego.selle@gmx.de
 
@@ -11,11 +11,14 @@ the master's thesis will be discussed.
 The presented thesis was part of the Skyscanner project:
 https://www.laas.fr/projects/skyscanner/
 
-It is a joint venture of five research instititions in Toulouse that aims at
+It is a joint venture of [five research instititions](https://www.laas.fr/projects/skyscanner/skyscanner-team)
+in Toulouse that aims at
 the study and experimentation of a fleet of mini-drones that cooperates to enable the
-adaptive sampling of cumulus-type clouds. The goal is to analyze the cloud's behaviour over the
-timespan of an hour, which corresponds to the expected lifetime of a cloud.
+adaptive sampling of cumulus-type clouds. The goal is to analyze the cloud's behavior over the
+timespan of an hour, which corresponds to the typical lifetime of a cloud.
 
+In my particular case, I was part of the RIS Team at LAAS-CNRS under the supervision of
+Simon Lacroix.
 
 ## PDF File of the Master's thesis done with LaTex
 
@@ -26,16 +29,16 @@ timespan of an hour, which corresponds to the expected lifetime of a cloud.
 
 ### Requirements for Python 3.5:
 
-+numpy>=1.10
-+scipy>=0.17.1
-+netCDF4>=1.2.4
-+matplotlib >= 1.5.1
-+GPy
-+libgp
++ numpy>=1.10
++ scipy>=0.17.1
++ netCDF4>=1.2.4
++ matplotlib >= 1.5.1
++ [GPy](https://github.com/SheffieldML/GPy) >= 1.0.7
++ [libgp](https://github.com/mblum/libgp)
 
 Other requirements:
-+Mencoder (For the animations)
-+Increase limit of simultaneous open files-> '''~$ ulimit -Sn 4096'''
++ Mencoder (For the animations)
++ Increase limit of simultaneous open files-> `~$ ulimit -Sn 4096`
 
 ###Modules:
 
@@ -46,10 +49,10 @@ Other requirements:
 
 ###Implementation Scripts
 
-1) animation_clouds.py
+1. animation_clouds.py
 
 Animate cross-sections of a given variable wrt time.  
 
-2) cloud_exploration.py
+2.  cloud_exploration.py
 
-3) cloud_exploration_polar.py
+3.  cloud_exploration_polar.py
