@@ -51,8 +51,24 @@ Other requirements:
 
 1. animation_clouds.py
 
-Animate cross-sections of a given variable wrt time.  
+Animate cross-sections of a given variable wrt time, e.g. Vertical Wind
+
+![alt text][logo]
+
+[logo]: https://github.com/DiegoSelle/master_thesis/blob/master/example_results/example_animation.gif
 
 2.  cloud_exploration.py
 
+![alt text][logo]
+
+[logo]: https://github.com/DiegoSelle/master_thesis/blob/master/example_results/cloud1_cs1.png
+
+![alt text][logo]
+
+[logo]:https://github.com/DiegoSelle/master_thesis/blob/master/example_results/variograms_cloud1_new.png
+
 3.  cloud_exploration_polar.py
+
+![alt text][logo]
+
+[logo]:
