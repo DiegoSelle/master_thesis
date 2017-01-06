@@ -53,22 +53,22 @@ Other requirements:
 
 Animate cross-sections of a given variable wrt time, e.g. Vertical Wind
 
-![alt text][logo]
+![alt text][animation]
 
-[logo]: https://github.com/DiegoSelle/master_thesis/blob/master/example_results/example_animation.gif
+[animation]: https://github.com/DiegoSelle/master_thesis/blob/master/example_results/example_animation.gif
 
 2.  cloud_exploration.py
 
-![alt text][logo]
+![alt text][cross-section]
 
-[logo]: https://github.com/DiegoSelle/master_thesis/blob/master/example_results/cloud1_cs1.png
+[cross-section]: https://github.com/DiegoSelle/master_thesis/blob/master/example_results/cloud1_cs1.png
 
-![alt text][logo]
+![alt text][variogram_cart]
 
-[logo]:https://github.com/DiegoSelle/master_thesis/blob/master/example_results/variograms_cloud1_new.png
+[variogram_cart]:https://github.com/DiegoSelle/master_thesis/blob/master/example_results/variograms_cloud1_new.png
 
 3.  cloud_exploration_polar.py
 
-![alt text][logo]
+![alt text][variogram_rad]
 
-[logo]:https://github.com/DiegoSelle/master_thesis/blob/master/example_results/variogram_cloud1_z115_zwc_432_t150.png
+[variogram_rad]:https://github.com/DiegoSelle/master_thesis/blob/master/example_results/variogram_cloud1_z115_zwc_432_t150.png
