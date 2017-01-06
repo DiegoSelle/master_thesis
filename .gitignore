@@ -1,0 +1,26 @@
+# ignore binary files
+**/*.pyc
+
+#ignore save files from text editors
+**/#*#
+**/*~
+
+#ignore hidden files and folders
+**/.*/**
+
+#ignore directory for experimental results
+results/**
+**/results
+**/results_local
+
+#ignore test files
+tests/**
+
+#ignore build folder
+build/**
+include/**
+lib/**
+
+#ignore python stuff
+*egg*
+setup.py
