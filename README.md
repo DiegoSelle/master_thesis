@@ -71,4 +71,4 @@ Animate cross-sections of a given variable wrt time, e.g. Vertical Wind
 
 ![alt text][logo]
 
-[logo]:
+[logo]:https://github.com/DiegoSelle/master_thesis/blob/master/example_results/variogram_cloud1_z115_zwc_432_t150.png
