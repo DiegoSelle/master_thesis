@@ -576,6 +576,59 @@ def polar_cloud_norm(points_span,lwc_cloud,COM_2D_lwc_tz,z_interested,origin_xy)
     return polar_cloud, polar_cloud_norm
 
 
+##################################################################################
+########## Function to fit normalized radial trend with analytical models  #######
+##################################################################################
+
+def fit_radial_trend(rtrend_global_median,r,model):
+    if model == 'generalized_logistic':
+        # params = [A,B,K,Q,nu]
+        p0 = [1,0.01,-0.2,1,0.5]
+        def residuals(p,rtrend_global_median,r):
+            A,B,K,Q,nu = p
+            err = (A+(K-A)/(1+Q*np.exp(-B*r))**(1/nu))-rtrend_global_median
+            return err
+        p_wlsq = sciopt.least_squares(residuals, p0, args=(rtrend_global_median,r))
+        return p_wlsq
+    if model == 'polynomial':
+        # regularized linear regression with fifth order polynomial
+        p0 = [1,0,0,0,0,0]
+        def residuals(p,rtrend_global_median,r):
+            theta0,theta1,theta2,theta3,theta4,theta5 = p
+            err = (theta0 + theta1*r + theta2*r**2 + theta3*r**3 + theta4*r**4 +
+                    theta5*r**5) - rtrend_global_median
+            return err
+        p_wlsq = sciopt.least_squares(residuals, p0, args=(rtrend_global_median,r))
+        return p_wlsq
+    if model == 'inverse_quadratic':
+        # params
+        p0 = [-0.1,1.1,0.001]
+        def residuals(p,rtrend_global_median,r):
+            a,b,c = p
+            err = a + b/(1+c*r**2) - rtrend_global_median
+            return err
+        p_wlsq = sciopt.least_squares(residuals, p0, args=(rtrend_global_median,r))
+        return p_wlsq
+    if model == 'rbf':
+        # Gaussian-like Radial Basis Function
+        p0 = [-0.1,1,0.01]
+        def residuals(p,rtrend_global_median,r):
+            a,b,c = p
+            err = a + b*np.exp(-c*r**2) - rtrend_global_median
+            return err
+        p_wlsq = sciopt.least_squares(residuals, p0, args=(rtrend_global_median,r))
+        return p_wlsq
+    if model == 'tanh':
+        # Tangens hyperbolicus logistic-like function
+        p0 = [0.5,-0.6,0.05,-4]
+        def residuals(p,rtrend_global_median,r):
+            a,b,c,d = p
+            err = a + b*np.tanh(c*r+d) - rtrend_global_median
+            return err
+        p_wlsq = sciopt.least_squares(residuals, p0, args=(rtrend_global_median,r))
+        return p_wlsq
+
+
 ##########################################################################################################
 ################ Function to normalize list of points, for example training inputs and test inputs #######
 ##########################################################################################################

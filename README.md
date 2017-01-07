@@ -61,8 +61,8 @@ Other requirements:
 ###Modules:
 
 ####mesonh_atm.mesonh_atmosphere
-Includes inhouse developed modules prior to my time at RIS to access and
-index the atmospheric simulation data.
+Includes in-house developed modules prior to my time at RIS to access,
+index and interpolate the atmospheric simulation data.
 
 ####modules.cloud :
 Functions and objects related to the analysis I needed to do during my thesis.
@@ -110,7 +110,7 @@ akin to the following:
 
 The x and y variograms do not converge, which means that the wind field is not stationary in those directions.
 The usual suspect for non-stationarity is a trend, i.e. the values of the wind field are dependent to the spatial position.
-Additionally,these variograms clearly show that the xy plane has similar values of the wind field near the edges of the cloud,
+Additionally, these variograms clearly show that the xy plane has similar values of the wind field near the edges of the cloud,
 suggesting that a polar representation may be more adequate to the problem at hand. This idea can be directly
 verified in the vertical wind plot of the z-cross-section.
 
@@ -135,7 +135,7 @@ were plotted in a 2D histogram. An example is shown below.
 
 [radial_trend]:https://github.com/DiegoSelle/master_thesis/blob/master/example_results/radial_trend_cloud1_incl_out.png
 
-With the median value at each radial percentage step one obtains a rough trend of how the vertical
+With the median value at each radial percentage step, one obtains a rough trend of how the vertical
 wind value decreases with the distance to the center. Doing this with different clouds and
 normalizing by the starting wind value at the center yields a one-fits all curve
 that can later be scaled by the measured value of the wind at the center of a cross-section in real life.

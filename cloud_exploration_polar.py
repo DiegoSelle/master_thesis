@@ -1,8 +1,7 @@
 import numpy as np
-from ..mesonh_atm.mesonh_atmosphere import MesoNHAtmosphere
+from mesonh_atm.mesonh_atmosphere import MesoNHAtmosphere
 import matplotlib.pyplot as plt
 from scipy.interpolate import RegularGridInterpolator
-#from cloud import cloud,sample_variogram
 import modules.cloud as ModCloud
 
 
@@ -51,6 +50,7 @@ lwc_data=atm.data['RCT'][449:455,85:123,60:200,110:250]
 zwind_data=atm.data['WT'][449:455,85:123,60:200,110:250]
 ids,counter,clouds=ModCloud.cloud_segmentation(lwc_data)
 
+# Get the cloud with the biggest amount of points inside the rough bounding box
 clouds=list(set(clouds.values()))
 length_point_clds = np.ndarray((0,1))
 for each_cloud in clouds:
@@ -59,16 +59,15 @@ for each_cloud in clouds:
     length_point_clds = np.vstack((length_point_clds,temp))
 
 cloud = clouds[np.argmax(length_point_clds)]
-
 cloud.calculate_attributes(lwc_data,zwind_data)
-lwc_cloud = np.zeros(lwc_data.shape)
 
 # Creating binarized cloud geometry with initial structure of lwc_data,
 # which contains all clouds
+lwc_cloud = np.zeros(lwc_data.shape)
 for point in cloud.points:
     lwc_cloud[point] = 1
 
-#Example coordinates of a cloud
+#Example coordinates of bounding box of a cloud
 xr =np.arange(0.005 + 60*0.01, 0.005 + 200*0.01,0.01)
 yr= np.arange(0.005 + 110*0.01, 0.005 + 250*0.01,0.01)
 zr = all_Zs[85:123]
@@ -143,17 +142,3 @@ for phi in range(0,360,20):
     if phi >=240:
         plt.plot(zwind_cloud_polar_norm[0,0,phi,:][zwind_cloud_polar_norm[0,0,phi,:]>0.5],'-+',label='phi={}'.format(phi))
 plt.legend()
-
-######## Evolution of Vertical Wind according to radial zones and height
-zwind_median_radial_zones_tz = np.ndarray((6,38,10))
-for t in range(0,6):
-    zspan=np.arange(0,38)
-    for z in zspan:
-        radii = np.arange(0,100,10)
-        for radius in radii:
-            temp_zone_zwind = np.ndarray((360,10))
-            temp_zone_zwind[:] = np.NAN
-            temp_zwind = zwind_cloud_polar_norm[t,z,:,radius+1:radius+11]
-            temp_lwc = lwc_cloud_polar_norm[t,z,:,radius+1:radius+11]
-            temp_zone_zwind[temp_lwc>=1e-5] = temp_zwind[temp_lwc>=1e-5]
-            zwind_median_radial_zones_tz[t,z,int(radius/10)] = np.nanmedian(temp_zone_zwind)
