@@ -76,6 +76,13 @@ the variograms with models typical in literature such as the Matern models or th
 Furthermore, it was deemed necessary to analyze the data in its polar form and to this end functions
 were implemented.
 
+####skyscan_lib.env_models.libgp
+
+Gaussian Process Regression C++ library with interface to use in Python. The advantages and reasoning behind choosing
+this library was its simplicity to add kernels, specially rare ones that could handle angular distances, apart from
+the standard Euclidean kernels.
+
+
 ###Implementation Scripts
 
 ####1) animation_clouds.py

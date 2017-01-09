@@ -1,0 +1,8 @@
+build/**
+tmp/**
+lib/**
+include/**
+*.html
+*.cpp
+*.c
+*.so
