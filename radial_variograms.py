@@ -36,6 +36,8 @@ variograms_cloud_trphi = {}
 
 for z_index in z_index_wanted:
 
+    # Example Data of two variables with the coordinates of a rough cross-section a cloud
+    # RCT = liquid water content, WT = vertical wind
     lwc_data=atm.data['RCT'][455:605,z_index:(z_index+2),60:200,100:250]
     zwind_data=atm.data['WT'][455:605,z_index:(z_index+2),60:200,100:250]
 
@@ -150,6 +152,8 @@ t_index_wanted = [455,475,495,515,535]
 variograms_cloud_zrphi = {}
 for t_index in t_index_wanted:
 
+    # Example Data of two variables with the coordinates of a rough bounding box of a cloud
+    # RCT = liquid water content, WT = vertical wind
     lwc_data=atm.data['RCT'][t_index:(t_index+5),90:123,60:200,100:250]
     zwind_data=atm.data['WT'][t_index:(t_index+5),90:123,60:200,100:250]
 

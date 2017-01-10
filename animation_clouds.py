@@ -31,7 +31,7 @@ mfiles4 = [path4+"min{:02d}/h6_U0_m{:02d}_{:03d}_diaKCL.nc".format(minute,minute
           for minute in range(1, 6)
           for second in range(1, 61)]
 
-          #hr06_m01_001_diaKCL.nc
+          
 atm4 = MesoNHAtmosphere(mfiles4, 1)
 
 ###################################################################

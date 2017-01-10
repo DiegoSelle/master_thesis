@@ -44,8 +44,9 @@ plt.ylabel('Resolution(km)')
 ########## Cloud exploration example, polar coordinates ###############
 #######################################################################
 
-# RCT is the name of the 'Liquid Water Content' Variable. WT is the
-# name of the vertical wind component.
+
+# Example Data of two variables with the coordinates of a rough bounding box of a cloud
+# RCT = liquid water content, WT = vertical wind
 lwc_data=atm.data['RCT'][449:455,85:123,60:200,110:250]
 zwind_data=atm.data['WT'][449:455,85:123,60:200,110:250]
 ids,counter,clouds=ModCloud.cloud_segmentation(lwc_data)
@@ -67,7 +68,7 @@ lwc_cloud = np.zeros(lwc_data.shape)
 for point in cloud.points:
     lwc_cloud[point] = 1
 
-#Example coordinates of bounding box of a cloud
+#Example coordinates of rough bounding box of a cloud
 xr =np.arange(0.005 + 60*0.01, 0.005 + 200*0.01,0.01)
 yr= np.arange(0.005 + 110*0.01, 0.005 + 250*0.01,0.01)
 zr = all_Zs[85:123]

@@ -23,6 +23,8 @@ plt.rc('font', **font)
 ############################################################
 #################### cloud example #########################
 ############################################################
+# Example Data of two variables with the coordinates of a rough bounding box of a cloud
+# RCT = liquid water content, WT = vertical wind
 lwc_data=atm.data['RCT'][449:455,75:125,60:200,110:250]
 zwind_data=atm.data['WT'][449:455,75:125,60:200,110:250]
 ids,counter,clouds = ModCloud.cloud_segmentation(lwc_data)
@@ -42,7 +44,7 @@ for point in cloud.points:
     lwc_cloud[point] = 1
 
 
-# Coordinates to interpolate values inside of cloud
+# Coordinates to interpolate values inside of cloud, i.e. rough bounding box
 xr =np.arange(0.005 + 60*0.01, 0.005 + 200*0.01,0.01)
 yr= np.arange(0.005 + 110*0.01, 0.005 + 250*0.01,0.01)
 zr = np.arange(0.985,0.985+50*0.01,0.01)

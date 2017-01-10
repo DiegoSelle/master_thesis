@@ -71,16 +71,17 @@ which gives the points that are part of the same cloud. This in turn permits the
 computation of important geometrical information such as center of masses, volume or bounding boxes.
 
 Moreover, it includes a function to compute variograms in 4 different directions and another function to fit
-the variograms with models typical in literature such as the Matern models or the Squared Exponentials.
+the variograms with models typical in literature such as the Matern models or the Squared Exponential.
 
 Furthermore, it was deemed necessary to analyze the data in its polar form and to this end functions
 were implemented.
 
 ####skyscan_lib.env_models.libgp
 
-Gaussian Process Regression C++ library with interface to use in Python. The advantages and reasoning behind choosing
-this library was its simplicity to add kernels, specially rare ones that could handle angular distances, apart from
-the standard Euclidean kernels.
+Gaussian Process Regression C++ library with an inhouse interface to use in Python. The advantages and reasoning behind choosing
+this library was its simplicity to add kernels, specially rare ones that could handle angular distances and
+optimize the heyperparameters using said distance, as is the case with polar coordinates. GPy, on the other hand, had the Euclidean distance embedded
+in its gradients and thus complicated its expansion to account for angular distances.
 
 
 ###Implementation Scripts

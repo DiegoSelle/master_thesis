@@ -21,7 +21,8 @@ plt.rc('font', **font)
 ########################### cloud example #############################
 #######################################################################
 
-
+# Example Data of two variables with the coordinates of a rough bounding box of a cloud
+# RCT = liquid water content, WT = vertical wind
 lwc_data=atm.data['RCT'][449:599,75:125,60:200,110:250]
 zwind_data=atm.data['WT'][449:599,75:125,60:200,110:250]
 ids,counter,clouds=ModCloud.cloud_segmentation(lwc_data)
