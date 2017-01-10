@@ -4,7 +4,7 @@ This is a repository with sample code similar to the working directory of the ma
 It was written in Python 3.5. The code will be thoroughly discussed and the context of
 the master's thesis will also be presented.
 
--Developer: diego.selle@laas.fr, diego.selle@gmx.de
+-Developer: diego.selle@gmx.de
 
 ## Skyscanner Project:
 
@@ -52,7 +52,6 @@ will be presented in this repository.
 + netCDF4>=1.2.4
 + matplotlib >= 1.5.1
 + [GPy](https://github.com/SheffieldML/GPy) >= 1.0.7, optional
-+ [libgp](https://github.com/mblum/libgp)
 
 Other requirements:
 + Mencoder (For the animations)
@@ -78,7 +77,7 @@ were implemented.
 
 ####skyscan_lib.env_models.libgp
 
-Gaussian Process Regression C++ library with an inhouse interface to use in Python. The advantages and reasoning behind choosing
+Adapted Gaussian Process Regression C++(https://github.com/crey0/libgp) library with an inhouse interface to use in Python. The advantages and reasoning behind choosing
 this library was its simplicity to add kernels, specially rare ones that could handle angular distances and
 optimize the heyperparameters using said distance, as is the case with polar coordinates. GPy, on the other hand, had the Euclidean distance embedded
 in its gradients and thus complicated its expansion to account for angular distances.
