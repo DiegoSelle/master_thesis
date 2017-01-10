@@ -1,8 +1,8 @@
-import numpy as np 
+import numpy as np
 from libc.stdlib cimport malloc, free
 from scipy.optimize import basinhopping
 
-
+# GP Interface for Python
 
 
 cdef np_vector(VectorXd base):
@@ -82,23 +82,23 @@ cdef class GPWrapper:
         cdef double[:,::1] X = out
         for i in range(ss_size):
             gp.get_pattern(i,&X[i,0],&y)
-        
+
         return out
-    
+
     @property
     def y(self):
         cdef GaussianProcess_ptr gp = self.gp
-        cdef double * x = <double *> malloc(gp.get_input_dim()*sizeof(double))      
+        cdef double * x = <double *> malloc(gp.get_input_dim()*sizeof(double))
         cdef size_t ss_size = gp.get_sampleset_size()
         out = np.nan*np.ndarray(ss_size)
         cdef double[:] y = out
         for i in range(ss_size):
             gp.get_pattern(i,x,&y[i])
-        
+
         free(x)
         return out
 
-    @property 
+    @property
     def covf(self):
         return CovfWrapper().wrap(&self.gp.covf())
 
@@ -109,7 +109,7 @@ cdef class GPWrapper:
 
 cdef class GPModel:
 
-    def __cinit__(self,int ndim, int nvar, string kernel_string, 
+    def __cinit__(self,int ndim, int nvar, string kernel_string,
                   int discr_dim = 0, double discr_tol = 1e-1):
         self.ndim = ndim
         self.nvar = nvar
@@ -130,7 +130,7 @@ cdef class GPModel:
         gp = self.gps[var_idx]
         for i in range(x.shape[0]):
                 gp.add_pattern(&x[i,0], y[i])
-                
+
     cpdef update(self, double[:,::1] x, double [:,:] y):
         cdef GaussianProcess_ptr gp
         cdef VectorXd x1 = VectorXd.Zero(self.ndim)
@@ -142,7 +142,7 @@ cdef class GPModel:
 
         for ivar in range(self.nvar):
             gp = self.gps[ivar]
-            
+
             # remove old stuff (at the beginning)
             ref.data()[self.discr_dim] = x[<int>x.base.shape[0]-1, self.discr_dim]
             n = gp.get_sampleset_size()
@@ -171,7 +171,7 @@ cdef class GPModel:
                 gp.predict(&x[i,0], &f, &var)
                 out[ivar,0,i] = f
                 out[ivar,1,i] = var
-        
+
         return out
 
     cpdef optimize(self, kwargs=None):
@@ -184,7 +184,7 @@ cdef class GPModel:
             verbose = kwargs['verbose']
             for i in range(self.nvar):
                 self.rp.maximize(self.gps[i],n,verbose)
-        else:            
+        else:
             opt = GPModelOptimizer()
             for i in range(self.nvar):
                 opt.optimize(self.gps[i],kwargs)
@@ -208,7 +208,7 @@ cdef class GPModel:
             for j in range(pdim):
                 values[ivar,j] = vec[j]
         return values
-    
+
     cpdef set_params(self, double[:,::1] values):
         cdef GaussianProcess_ptr gp
         cdef CovarianceFunction * covf
@@ -217,15 +217,15 @@ cdef class GPModel:
             gp = self.gps[ivar]
             covf = &gp.covf()
             covf.set_loghyper(&values[ivar,0])
-    
+
 
     cpdef get_params_dim(self):
         return self.gps[0].covf().get_param_dim()
-    
+
     @property
     def X(self):
       return [m.X for m in self.models]
-    
+
     @property
     def y(self):
        return [m.y for m in self.models]
@@ -235,8 +235,8 @@ cdef class GPModel:
         return [GPWrapper().wrap(m) for m in self.gps]
 
 cdef class EnvModel:
-    def __cinit__(self, string kernel_string=string(b"CovSum(CovSEard, CovNoise)"), kwargs=None): 
-                  
+    def __cinit__(self, string kernel_string=string(b"CovSum(CovSEard, CovNoise)"), kwargs=None):
+
         self.wmodel = GPModel(4,3,kernel_string,
                               discr_tol=kwargs['gp_discr_tol'])
         self.params_set = False
@@ -280,5 +280,3 @@ cdef class EnvModel:
     property wmodel:
         def __get__(self):
             return self.wmodel
-        
-
