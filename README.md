@@ -1,6 +1,6 @@
 ## Repository of Diego Selle's Master's Thesis
 
-This is a repository with sample code of the master's thesis of Diego Selle.
+This is a repository with sample code similar to the working directory of the master's thesis of Diego Selle.
 It was written in Python 3.5. The code will be thoroughly discussed and the context of
 the master's thesis will also be presented.
 
