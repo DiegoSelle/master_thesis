@@ -4,7 +4,7 @@ This is a repository with sample code similar to the working directory of the ma
 It was written in Python 3.5. The code will be thoroughly discussed and the context of
 the master's thesis will also be presented.
 
--Developer: diego.selle@gmx.de
+- Developer: diego.selle@gmx.de
 
 ## Skyscanner Project:
 
@@ -57,13 +57,13 @@ Other requirements:
 + Mencoder (For the animations)
 + Increase limit of simultaneous open files-> `~$ ulimit -Sn 4096`
 
-###Modules:
+### Modules:
 
-####mesonh_atm.mesonh_atmosphere
+#### mesonh_atm.mesonh_atmosphere
 Includes in-house developed modules prior to my time at RIS to access,
 index and interpolate the atmospheric simulation data.
 
-####modules.cloud :
+#### modules.cloud :
 Functions and objects related to the analysis I needed to do during my thesis.
 These include a cloud class whose objects are generated after a segmentation algorithm,
 which gives the points that are part of the same cloud. This in turn permits the
@@ -75,7 +75,7 @@ the variograms with models typical in literature such as the Matern models or th
 Furthermore, it was deemed necessary to analyze the data in its polar form and to this end functions
 were implemented.
 
-####skyscan_lib.env_models.libgp
+#### skyscan_lib.env_models.libgp
 
 Adapted Gaussian Process Regression C++(https://github.com/crey0/libgp) library with an inhouse interface to use in Python. The advantages and reasoning behind choosing
 this library was its simplicity to add kernels, specially rare ones that could handle angular distances and
@@ -83,9 +83,9 @@ optimize the heyperparameters using said distance, as is the case with polar coo
 in its gradients and thus complicated its expansion to account for angular distances.
 
 
-###Implementation Scripts
+### Implementation Scripts
 
-####1) animation_clouds.py
+#### 1) animation_clouds.py
 
 Animate cross-sections of a given variable wrt time, e.g. Vertical Wind
 
@@ -96,7 +96,7 @@ Animate cross-sections of a given variable wrt time, e.g. Vertical Wind
 This script was particularly useful for finding bounding boxes for clouds when analyzing
 the liquid water content variable.
 
-####2)  cloud_exploration.py (Chapter 4.1)
+#### 2)  cloud_exploration.py (Chapter 4.1)
 
 This script served to visualize clouds in its Cartesian grid-form. The following example pertains to
 a z-cross-section of the vertical wind field:
@@ -121,7 +121,7 @@ Additionally, these variograms clearly show that the xy plane has similar values
 suggesting that a polar representation may be more adequate to the problem at hand. This idea can be directly
 verified in the vertical wind plot of the z-cross-section.
 
-####3)  cloud_exploration_polar.py (Chapter 4.2)
+#### 3)  cloud_exploration_polar.py (Chapter 4.2)
 
 This script shows the transformed wind field when using polar coordinates with normalized radius, among other plots.
 ![alt text][polar_cs]
@@ -132,7 +132,7 @@ The plot shows that the polar representation helps to better visualize the rough
 In other words, one can see that the values are higher in the center of the cloud and then decrease
 as one reaches the boundaries.
 
-####4) radial_trend_estimation.py (Chapter 4.2)
+#### 4) radial_trend_estimation.py (Chapter 4.2)
 
 Based on the observations done on the z-cross-sections of the cloud, the vertical wind field was analyzed
 in the radial direction, i.e. several thousand values at different radii with an angular resolution of 1 degree
@@ -149,7 +149,7 @@ that can later be scaled by the measured value of the wind at the center of a cr
 This enables a rough estimation of the wind field at a given cross-section or even the whole
 cloud without the necessity of optimizing parameters.
 
-####5) radial_variograms.py (Chapter 4.2)
+#### 5) radial_variograms.py (Chapter 4.2)
 
 With the detrended (y_real-trend(radius)) wind field in normalized polar coordinates the variograms were recalculated, yielding curves
 that demonstrated a clear increase in stationarity, as can be seen by their convergence-like behavior.
@@ -167,7 +167,7 @@ The obtained models can now be compared with the off-the-shelf implementations t
 prior information about the hyperparameters while performing expensive optimizations with complexity of the order of
 n^3.
 
-####6) testGP.py (Chapter 4.3)
+#### 6) testGP.py (Chapter 4.3)
 
 This script consisted of experiments to compare the previous version of the wind field mapping against the new
 one consisting of the trend and the GPR prediction using the hyperparameters obtained with the detrended variograms.
